@@ -1,4 +1,5 @@
-import binascii, urllib, socket, random, struct
+#!/usr/bin/env python2
+import binascii, urllib, socket, random, struct, json, sys
 from bcode import bdecode
 from urlparse import urlparse, urlunsplit
 
@@ -142,3 +143,7 @@ def udp_parse_scrape_response(buf, sent_transaction_id, hashes):
 
 def udp_get_transaction_id():
 	return int(random.randrange(0, 255))
+
+if __name__ == '__main__':
+	res = scrape(sys.argv[1], sys.argv[2:])
+	print json.dumps(res)
